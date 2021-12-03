@@ -1,4 +1,4 @@
-package team.hobbyrobot.tdn.base;
+package team.hobbyrobot.tdn.core;
 
 import java.io.IOException;
 import java.util.AbstractMap;

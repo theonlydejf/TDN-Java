@@ -1,8 +1,12 @@
 package team.hobbyrobot.tdn.core;
 
+import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Map.Entry;
+
+import team.hobbyrobot.tdn.base.DefaultTDNParserSettings;
+
 import java.io.*;
 
 public class TDNRoot implements Iterable<Entry<String, TDNValue>>
@@ -14,56 +18,60 @@ public class TDNRoot implements Iterable<Entry<String, TDNValue>>
 
     Hashtable<String, TDNValue> rootData;
     
-    /*public TDNValue this[string key]
+    public TDNValue get(String key)
     {
-        get
-        {
-            string[] path = key.Split('.');
-            var root = GetRootData(path);
-            return root[path.Last()];
-        }
-        set
-        {
-            string[] path = key.Split('.');
-            var root = GetRootData(path, true);
-            if (!root.ContainsKey(path.Last()))
-                root.Add(path.Last(), value);
-            else
-                root[path.Last()] = value;
-        }
-    }*/
-
-    /*private Hashtable<String, TDNValue> GetRootData(String[] path, boolean createNewRoots = false)
+        String[] path = key.split("\\.");
+        Hashtable<String, TDNValue> root = GetRootData(path, false);
+        return root.get(path[path.length - 1]);
+    }
+    
+    public void put(String key, TDNValue value)
     {
-        IEnumerable<string> rootPath = path.Take(path.Length - 1);
+        String[] path = key.split("\\.");
+        Hashtable<String, TDNValue> root = GetRootData(path, true);
+        root.put(path[path.length - 1], value);
+    }
 
-        Dictionary<string, TDNValue> currTable = rootData;
-        foreach (var rootName in rootPath)
+    private Hashtable<String, TDNValue> GetRootData(String[] path, boolean createNewRoots)
+    {
+    	String[] rootPath = Arrays.copyOf(path, path.length - 1);
+
+    	Hashtable<String, TDNValue> currTable = rootData;
+        for(String rootName : rootPath)
         {
-            if (createNewRoots && !currTable.ContainsKey(rootName))
-                currTable.Add(rootName, new TDNValue(new TDNRoot(), new TDNRootParser()));
-            TDNValue newRoot = currTable[rootName];
-            if (newRoot.Parser.TypeKey != new TDNRootParser().TypeKey)
-                throw new ArgumentException($"Root \"{ rootName }\" in path \"{ string.Join(".", path) }\" is not a valid root!");
-            currTable = ((TDNRoot)newRoot.Value).rootData;
+            if (createNewRoots && !currTable.containsKey(rootName))
+                currTable.put(rootName, new TDNValue(new TDNRoot(), new TDNRootParser()));
+            TDNValue newRoot = currTable.get(rootName);
+            if (newRoot.parser().typeKey() != new TDNRootParser().typeKey())
+            {
+            	StringBuilder sb = new StringBuilder();
+            	for(String s : path)
+            	{
+            		sb.append(s);
+            		sb.append('.');
+            	}
+            	sb.setLength(sb.length() - 1);
+            	throw new IllegalArgumentException(String.format("Root \"%1$s\" in path \"%2$s\" is not a valid root!", rootName, sb.toString()));
+            }
+            currTable = ((TDNRoot)newRoot.value).rootData;
         }
 
         return currTable;
-    }*/
+    }
 
-    /*public void WriteToStream(BufferedWriter s)
+    public void writeToStream(BufferedWriter s) throws IOException
     {
-        TDNStreamWriter sw = new TDNStreamWriter(new StreamWriter(s));
+        TDNBufferedWriter sw = new TDNBufferedWriter(new BufferedWriter(s), new DefaultTDNParserSettings());
 
-        new TDNRootParser().WriteToStream(sw, this);
-    }*/
+        new TDNRootParser().writeToStream(sw, this);
+    }
 
-    /*public static TDNRoot ReadFromStream(Stream s)
+    public static TDNRoot readFromStream(BufferedReader br) throws IOException
     {
-        TDNStreamReader reader = new TDNStreamReader(new StreamReader(s));
-        TDNValue objVal = new TDNRootParser().ReadFromStream(reader);
-        return objVal.Value as TDNRoot;
-    }*/
+        TDNBufferedReader reader = new TDNBufferedReader(br, new DefaultTDNParserSettings());
+        TDNValue objVal = new TDNRootParser().readFromStream(reader);
+        return (TDNRoot)objVal.value;
+    }
     
     public void insertValue(String key, TDNValue value)
     {

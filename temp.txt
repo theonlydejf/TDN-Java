@@ -1,0 +1,1 @@
+int|iHodnota:420;obj|rootHodnota:str|sHodnota:"ahoj;obj|root1_2:str|sHodnota:"root_1>2;;arr|arrHodnota:2;obj;str|sHodnota:"root_1>2;;str|sHodnota:"root_1>2;;int|iHodnota:69;bln|bHodnota:true;flt|fHodnota:69.42;;;
