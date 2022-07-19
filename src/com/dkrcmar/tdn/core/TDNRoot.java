@@ -1,11 +1,11 @@
-package team.hobbyrobot.tdn.core;
+package com.dkrcmar.tdn.core;
 
 import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Map.Entry;
 
-import team.hobbyrobot.tdn.base.DefaultTDNParserSettings;
+import com.dkrcmar.tdn.base.DefaultTDNParserSettings;
 
 import java.io.*;
 

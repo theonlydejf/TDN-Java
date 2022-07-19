@@ -1,4 +1,4 @@
-package team.hobbyrobot.tests;
+package com.dkrcmar.tests;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -12,8 +12,8 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Map.Entry;
 
-import team.hobbyrobot.tdn.base.*;
-import team.hobbyrobot.tdn.core.*;
+import com.dkrcmar.tdn.base.*;
+import com.dkrcmar.tdn.core.*;
 
 public class Main
 {

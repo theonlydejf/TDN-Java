@@ -1,15 +1,15 @@
-package team.hobbyrobot.tdn.core;
+package com.dkrcmar.tdn.core;
 
 import java.io.IOException;
 import java.util.AbstractMap;
 import java.util.Map.Entry;
 
-import team.hobbyrobot.tdn.core.TDNBufferedReader;
-import team.hobbyrobot.tdn.core.TDNBufferedWriter;
-import team.hobbyrobot.tdn.core.TDNControlCharacter;
-import team.hobbyrobot.tdn.core.TDNRoot;
-import team.hobbyrobot.tdn.core.TDNTypeParser;
-import team.hobbyrobot.tdn.core.TDNValue;
+import com.dkrcmar.tdn.core.TDNBufferedReader;
+import com.dkrcmar.tdn.core.TDNBufferedWriter;
+import com.dkrcmar.tdn.core.TDNControlCharacter;
+import com.dkrcmar.tdn.core.TDNRoot;
+import com.dkrcmar.tdn.core.TDNTypeParser;
+import com.dkrcmar.tdn.core.TDNValue;
 
 public class TDNRootParser implements TDNTypeParser
 {

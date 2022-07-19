@@ -1,9 +1,9 @@
-package team.hobbyrobot.tdn.base;
+package com.dkrcmar.tdn.base;
 
 import java.util.Iterator;
 
-import team.hobbyrobot.tdn.core.TDNTypeParser;
-import team.hobbyrobot.tdn.core.TDNValue;
+import com.dkrcmar.tdn.core.TDNTypeParser;
+import com.dkrcmar.tdn.core.TDNValue;
 
 public class TDNArray implements Iterable<Object>
 {

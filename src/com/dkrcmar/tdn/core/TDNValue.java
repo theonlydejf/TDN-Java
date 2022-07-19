@@ -1,9 +1,9 @@
-package team.hobbyrobot.tdn.core;
+package com.dkrcmar.tdn.core;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import team.hobbyrobot.tdn.base.TDNArray;
+import com.dkrcmar.tdn.base.TDNArray;
 
 public class TDNValue
 {

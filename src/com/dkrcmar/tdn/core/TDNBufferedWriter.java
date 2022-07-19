@@ -1,4 +1,4 @@
-package team.hobbyrobot.tdn.core;
+package com.dkrcmar.tdn.core;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
